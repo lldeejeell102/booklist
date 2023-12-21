@@ -59,7 +59,14 @@ app.post("/books", async (req, res) => {
 })
 
 // Show - GET (rendering only one book)
-
+app.get("/books/:id", async (req, res) => {
+    // find a book by _id
+    let foundBook = await Book.findById(req.params.id) // the request params id
+    // render show.ejs with the found book
+    res.render("show.ejs", {
+        book: foundBook
+    })
+})
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
