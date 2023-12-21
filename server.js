@@ -24,6 +24,15 @@ app.use(express.urlencoded({ extended: false })) // body parser (how we get aces
 // ROUTES
 ////////////////////////////////////////////////////////////////////////////////////////////
 // Index - GET (render all of the books)
+app.get("/books", async (req, res) => {
+    // find all of the books
+    let books = await Book.find({})
+    //render all the books => index.ejs
+    res.render("index.ejs", {
+        books: books.reverse()
+    })
+})
+
 
 // New - GET (form to create a new book)
 app.get("/books/new", (req, res) => {
