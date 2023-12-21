@@ -4,5 +4,13 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1>Booklist Index</h1>
+    <% for(let i = 0; i < books.length; i++){ %>
+        <div>
+            <a href="/books/<%= books[i]._id %>">
+                <%= books[i].title %>
+            </a>
+            <p>Click title to see more</p>
+        </div>
+    <% } %>
 </body>
 </html>
