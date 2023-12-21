@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false })) // body parser (how we get aces
 
 // New - GET (form to create a new book)
 app.get("/books/new", (req, res) => {
-    res.send("new book")
+    res.render("new.ejs")
 })
 
 
