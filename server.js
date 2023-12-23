@@ -54,6 +54,30 @@ app.delete("/books/:id", async (req, res) => {
     }
 })
 
+// Update
+app.put("/books/:id", async (req, res) =>{
+    try{
+        // handle our checkbox
+        if(req.body.completed === "on"){
+            req.body.completed = true
+        } else {
+            req.body.completed = false
+        }
+        // then find by ID and update with req.body
+        // findByIdAndUpdate - id, data to update, options
+        let updatedBook = await Book.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {
+                new: true
+            }
+        )
+        // redirect to the show route wih the updated book
+        res.redirect(`/books/${updatedBook._id}`)
+        }catch{
+            res.send("something went wrong in update route")
+        }
+})
 
 // Create - POST
 app.post("/books", async (req, res) => {
