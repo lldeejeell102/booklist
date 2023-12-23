@@ -9,6 +9,7 @@ const methodOverride = require("method-override")
 
 const app = express();
 const { PORT = 3013 } = process.env;
+const seedData = require("./models/seed.js")
 // const PORT = process.env.PORT || 3013;
 
 // bring in our model
@@ -110,7 +111,21 @@ app.get("/books/edit/:id", async (req, res) => {
         res.send(error)
     }
 })
-
+// Seed
+app.get("/books/seed", async (req, res) => {
+    try{
+        // delete everything in the database
+        await Book.deleteMany({})
+        // create data in the database
+        await Book.create(
+            seedData
+        )
+        // redirect back to the index
+        res.redirect("/books")
+    } catch (error) {
+        res.send("something went wrong with your seed")
+    }
+})
 // Show - GET (rendering only one book)
 app.get("/books/:id", async (req, res) => {
     // find a book by _id
