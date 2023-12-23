@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 
 app.use(morgan("dev")) // brings morgan in
 app.use(express.urlencoded({ extended: false })) // body parser (how we get acess to req.body)
+app.use("/public", express.static("public")) // serve up our public directory
 
 // lets us use DELETE PUT http verbs
 app.use(methodOverride("_method"))
