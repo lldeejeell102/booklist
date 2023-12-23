@@ -39,6 +39,19 @@ app.get("/books/new", (req, res) => {
     res.render("new.ejs")
 })
 
+// Delete - DELETE
+app.delete("/books/:id", async (req, res) => {
+    try {
+        // Find a book and then delete
+        let deletedBook = await Book.findByIdAndDelete(req.params.id)
+        console.log(deletedBook)
+        // redirect back to the index
+        res.redirect("/books")
+    } catch (error){
+        res.status(500).send("somethign went wrong when deleting")
+    }
+})
+
 
 // Create - POST
 app.post("/books", async (req, res) => {

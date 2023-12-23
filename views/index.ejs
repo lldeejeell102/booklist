@@ -10,6 +10,9 @@
                 <%= books[i].title %>
             </a>
             <p>Click title to see more</p>
+            <form action="/books/<%= books[i]._id %>/_method=DELETE" method="post">
+                <input type="submit" value="Remove Book">
+            </form>
         </div>
     <% } %>
 </body>
