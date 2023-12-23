@@ -4,19 +4,25 @@
 <body>
     <%- include("./partials/nav.ejs") %>
     <h1>Booklist Index</h1>
-    <% for(let i = 0; i < books.length; i++){ %>
-        <div>
-            <a href="/books/<%= books[i]._id %>">
-                <%= books[i].title %>
-            </a>
-            <p>Click title to see more</p>
-            <form action="/books/<%= books[i]._id %>/?_method=DELETE" method="post">
-                <input type="submit" value="Remove Book">
-            </form>
-
-            <!-- Link to our Edit Page -->
-            <a href="/books/edit/<%= books[i]._id %>">Edit <%= books[i].title %></a>
-        </div>
-    <% } %>
+    <p>Click title to see more</p>
+    
+    <div class="book-container">
+        <% for(let i = 0; i < books.length; i++){ %>
+            <div class="book">
+                <a href="/books/<%= books[i]._id %>" class="book-title">
+                    <%= books[i].title %>
+                </a>
+        
+                <!-- delete form goes here -->
+                <div class="cta">
+                    <form action="/books/<%= books[i]._id %>/?_method=DELETE" method="post" id="deleteform">
+                        <input type="submit" value="Remove Book">
+                    </form>
+                    <!-- Link to our Edit Page -->
+                    <a href="/books/edit/<%= books[i]._id %>" class="book-edit">Edit <%= books[i].title %></a>
+                </div>
+            </div>
+        <% } %>
+    </div>
 </body>
 </html>
