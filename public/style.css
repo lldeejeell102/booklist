@@ -1,3 +1,64 @@
-body {
-    color: red;
+/* new Page */
+
+#newform {
+    width: 50%;
+    box-sizing: border-box;
 }
+
+fieldset{
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+legend {
+    padding: 0px 10px;
+    color: purple;
+}
+
+label {
+    color: green;
+    display: block;
+}
+
+input {
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+input:focus{
+    outline: 0;
+    border: 2px solid purple;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 50px;
+    background-color: orange;
+    box-shadow: 2px 2px lightgreen;
+    font-size: 1.3em;
+    color: whitesmoke;
+    border: 0px;
+    transition: 0.2s ease-in-out;
+}
+
+input[type="submit"]:hover{
+    cursor: pointer;
+    background-color: yellowgreen;
+    box-shadow: 2px 2px lightsalmon;
+}
+
+#new-body{
+    margin: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+/* Index Page */
