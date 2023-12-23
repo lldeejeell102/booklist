@@ -5,6 +5,7 @@ require("dotenv").config() // this is how we make use of our .env variables
 require("./config/db.js") // bring in our db config
 const express = require("express")
 const morgan = require("morgan")
+const methodOverride = require("method-override")
 
 const app = express();
 const { PORT = 3013 } = process.env;
@@ -12,13 +13,14 @@ const { PORT = 3013 } = process.env;
 
 // bring in our model
 const Book = require("./models/Book.js")
-
 ////////////////////////////////////////////////////////////////////////////////////////////
 // MIDDLEWARE
 ////////////////////////////////////////////////////////////////////////////////////////////
 app.use(morgan("dev")) // brings morgan in
 app.use(express.urlencoded({ extended: false })) // body parser (how we get acess to req.body)
 
+// lets us use DELETE PUT http verbs
+app.use(methodOverride("_method"))
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 // ROUTES
@@ -68,6 +70,20 @@ app.post("/books", async (req, res) => {
         res.redirect("/books")
     } catch (err) {
         res.send(err)
+    }
+})
+
+// Edit
+app.get("/books/edit/:id", async (req, res) => {
+    try {
+        // find the book and edit
+        let foundBook = await Book.findById(req.params.id)
+        res.render("edit", {
+            book: foundBook
+        })
+
+    } catch (error) {
+        res.send(error)
     }
 })
 
